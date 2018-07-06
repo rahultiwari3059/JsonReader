@@ -37,17 +37,19 @@ public class JsonResponseReader {
 		Util utilObject = new Util();
 		JSONParser parser = new JSONParser();
 
-		String responseJSON = utilObject.responseFromEasyEcom();
+	   // creating object of InsertEasyEcom class
 		InsertEasyEcom insertEasyEcomObject = new InsertEasyEcom();
+		
+		String responseJSON = utilObject.responseFromEasyEcom();
 		System.out.println(responseJSON);
 
 		try {
-			/*
-			 * Object obj = parser.parse(new
-			 * FileReader("C:\\rahul_work\\ResponsefromEasyecom.json"));
-			 * JSONObject responsejsonobject = (JSONObject) obj;
-			 */
-
+			
+			/* Object obj = parser.parse(new
+			  FileReader("C:\\rahul_work\\ResponsefromEasyecom.json"));
+			  JSONObject responsejsonobject = (JSONObject) obj;*/
+			 
+			 
 			Object obj2 = parser.parse(responseJSON);
 
 			// converting normal object into jsonobject
@@ -73,7 +75,7 @@ public class JsonResponseReader {
 
 					JSONObject suborderjsonobject = (JSONObject) datajsonarray.get(k);
 
-					orderObject1.setId((Long.toString((Long)suborderjsonobject.get("order_id")) ));
+					orderObject1.setId((Long.toString((Long) suborderjsonobject.get(Constant.ORDER_ID))));
 					orderObject1.setStatus(Constant.STATUS);
 					orderObject1.setWarehouseId(Constant.WAREHOUSEID);
 					orderObject1.setStatusdatetime((String) suborderjsonobject.get(Constant.ORDER_DATE));
@@ -89,16 +91,25 @@ public class JsonResponseReader {
 
 						JSONObject suborderobject = (JSONObject) (suborderjsonarrayObject.get(j));
 
-						orderinesobjcet1.setSkuid((String) suborderobject.get(Constant.SKU));
 						String SKUCODE = (String) suborderobject.get(Constant.SKU);
+
+						ResultSet rs1 = insertEasyEcomObject.replaceEasyEcomSku(SKUCODE);
+						rs1.next();
+						String wmscode = rs1.getString(Constant.WMS_CODE);
+						//System.out.println(wmscode);
+
+						// orderinesobjcet1.setSkuid((String)
+						// suborderobject.get(Constant.SKU));
+						orderinesobjcet1.setSkuid(wmscode);
+
 						Long orderedqnty = (Long) suborderobject.get(Constant.QUANTITY);
-						ResultSet rs = insertEasyEcomObject.checkOrderQuantity(Constant.WAREHOUSEID, Constant.OWNERID,SKUCODE);
-						
-						
+						ResultSet rs = insertEasyEcomObject.checkOrderQuantity(Constant.WAREHOUSEID, Constant.OWNERID,
+								wmscode);
+
 						int totalinventory = 0;
 						int alreadyorderedqnty = 0;
 						while (rs.next()) {
-							
+
 							totalinventory = rs.getInt("inventory");
 							System.out.println("totalinventory " + totalinventory);
 							alreadyorderedqnty = rs.getInt("Ordered");
@@ -132,6 +143,7 @@ public class JsonResponseReader {
 							continue;
 						}
 
+					}
 						salesorderinfoObject.setOrderlines(orderlineListObject2);
 
 						salesorderinfoObject.setOrder(orderObject1);
@@ -169,7 +181,8 @@ public class JsonResponseReader {
 							billingAddressObject1.setAddressStreet(Constant.ADDRESSSTREET);
 						} else {
 
-							billingAddressObject1.setAddressStreet((String) suborderjsonobject.get(Constant.ADDRESS_LINE_2));
+							billingAddressObject1
+									.setAddressStreet((String) suborderjsonobject.get(Constant.ADDRESS_LINE_2));
 
 						}
 						billingAddressObject1.setState((String) suborderjsonobject.get(Constant.STATE));
@@ -188,7 +201,8 @@ public class JsonResponseReader {
 						if (suborderjsonobject.get(Constant.ADDRESS_LINE_1) == null) {
 							shippingAddressClassObject1.setAddress(Constant.ADDRESS);
 						} else {
-							shippingAddressClassObject1.setAddress((String) suborderjsonobject.get(Constant.ADDRESS_LINE_1));
+							shippingAddressClassObject1
+									.setAddress((String) suborderjsonobject.get(Constant.ADDRESS_LINE_1));
 						}
 
 						if (suborderjsonobject.get(Constant.ADDRESS_LINE_2) == null) {
@@ -270,6 +284,11 @@ public class JsonResponseReader {
 
 							// converting normal object into jsonobject
 							JSONObject confirmJsonObject = (JSONObject) confirmObject;
+						Long confirmcode = (Long) confirmJsonObject.get("code");
+						System.out.println(confirmcode);
+						
+						if(confirmcode.equals(new Long("200")))
+						{
 							JSONObject datajsonobject = (JSONObject) confirmJsonObject.get("data");
 							JSONArray confirmstring = (JSONArray) datajsonobject.get("Success");
 
@@ -283,14 +302,22 @@ public class JsonResponseReader {
 								System.out.println(
 										"orderid " + successorderid + "  has been successfully inserted into database");
 
-							} 
+							}
+						}
+						else 
+						{
+							
+							String failuremessage=(String) confirmJsonObject.get("message");
+							System.out.println(failuremessage);
+							
+						}
 
 						}
 
 					}
 
 				}
-			} 
+		//	}
 
 		} catch (Exception ex) {
 			System.out.println("Unable to open file ");

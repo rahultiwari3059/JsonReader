@@ -25,8 +25,8 @@ public class Connection {
 		URL url = new URL(Constant.PROCESSSOATEMIZA);
 		URLConnection connection = url.openConnection();
 		connection.setDoOutput(true);
-		connection.setConnectTimeout(5000);
-		connection.setReadTimeout(5000);
+		connection.setConnectTimeout(50000);
+		connection.setReadTimeout(50000);
 		connection.setRequestProperty(Constant.METHODSTRING, Constant.METHOD);
 		connection.setRequestProperty(Constant.TOKENSM,Constant.EMIZATOKENSM);
 		connection.setRequestProperty(Constant.CONTENT_TYPE, Constant.CONTENT_TYPE_VALUE);

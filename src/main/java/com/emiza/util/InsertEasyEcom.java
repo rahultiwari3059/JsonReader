@@ -49,4 +49,19 @@ public ResultSet checkOrderQuantity(String Warehouseid,String Ownerid,String SKU
 	
 	return resultSet;
 }
+	
+public ResultSet replaceEasyEcomSku(String SKUCODE) throws InvalidFileFormatException, SQLException, IOException {
+		
+		Object result = null;
+		Status status = new Status(); 
+		
+		String query = Constant.SP_EMIZA_WMSSKU_AGAINST_EASYECOMSKU.replace(Constant.REPLACE_EASYECOM_SKUCODE, SKUCODE);
+		System.out.println(query);
+		
+		ResultSet resultSet = dbUtility.executeSqlStringTransaction(query);
+		//System.out.println(resultSet);
+		
+		
+		return resultSet;
+	}
 }

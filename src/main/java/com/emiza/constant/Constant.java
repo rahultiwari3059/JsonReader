@@ -104,13 +104,19 @@ public class Constant {
 		public static final String REPLACE_WAREHOUSE ="<WAREHOUSE>";
 		public static final String REPLACE_OWNER ="<OWNER>";
 		public static final String REPLACE_ORDERID ="<ORDERID>";
+		public static final String REPLACE_EASYECOM_SKUCODE="<EASYECOM_SKUCODE>";
 		
 		public static final String SP_EMIZA_GET_INVENTORY_FOR_SM_ORDER = "EXEC [dbo].[SP_EMIZA_GET_INVENTORY_FOR_SM_ORDER] '<WAREHOUSE>','<OWNER>','<SKUCODE>'";
+		public static final String SP_EMIZA_WMSSKU_AGAINST_EASYECOMSKU = "EXEC [dbo].[SP_EMIZA_EASYECOM_SKUCODE_REPLACE] '<EASYECOM_SKUCODE>'";
+
+		
 		public static final String REPLACE_SKUCODE ="<SKUCODE>";
 	 
-//response key from easyecom
+        //response key from easyecom
 		public static final String MESSAGE="message";
 		public static final String SUCCESSFUL="Successful";
+		
+		public static final String ORDER_ID="order_id";
 		public static final String 	DATA="data";
 		public static final String REFERENCE_CODE ="reference_code";
 		public static final String ORDER_DATE="order_date";
@@ -128,7 +134,7 @@ public class Constant {
 		public static final String ADDRESS_LINE_2="address_line_2";
 		public static final String STATE="state";
 		public static final String CITY="city";
-		
+		public static final String WMS_CODE="WMS_SKUCODE";
 		
 		
 		
