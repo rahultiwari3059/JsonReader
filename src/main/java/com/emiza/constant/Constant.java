@@ -2,25 +2,51 @@ package com.emiza.constant;
 
 public class Constant {
 	
-	public static final String  EMAILID="rahul.tiwari@emizainc.com";
+	public static final String  EMAILID="Swissmilitary@gmail.com";
 	public static final String  PHONENUMBER="8999768699";
 	public static final String  GST="12.7";
 	public static final String  VAT="2.1";
 	public static final String PRICE="6000";
-	public static final String CUSTNAME="RAHUL";
-	public static final String ZIP="401208";
+	public static final String CUSTNAME="swiss";
+	public static final String ZIP="222222";
+	public static final String CITY_ADDRESS="swissmilitary";
+	public static final String STATE_ADDRESS="MAHARASHTRA";
+	public static final String PINCODE="pincode";
+	public static final String UNITPRICE="mrp";
+	public static final String UNITPRICE1="1";
+	public static final String MARKETPLACE="marketplace";
+	public static final String DISPATCH_DATE="dispatch_by_date";
+	public static final String DISPATCH_DATE1="29-Jul-2018";
+	
 	public static final String PATH="C:\\rahul_work\\ResponsefromEasyecom.json";
 	public static final String ADDRESS="302,C wing ,Konark Residency,Evershine Gate";
-	public static final String ADDRESSSTREET="madhuban Hieghts";
+	public static final String ADDRESSSTREET="  ";
 	public static final String RESPONSEFILE="C:\\rahul_work\\ResponsefromEasyecom.json";
 	public static final String WAREHOUSEID="DL01";
 	public static final String OWNERID="SM";
 	public static final String STATUS="NEW";
 	public static final String SELLER ="1111111";
+	public static final String SUCCESS_STATUS="successfully done";
+	public static final String FAILURE_STATUS="failed ";
+	
+	/*
+	 * For mail sending
+	 */
+	public static final String EMAIL = "email";
+	public static final String USERNAME = "username";
+	public static final String HOST = "host";
+	public static final String TTLS = "ttls";
+	public static final String SMTPHOST = "smtphost";
+	public static final String SMTPPORT = "smtpport";
+	public static final String AUTH = "auth";
+	public static final String EMAIL_GROUP = "emailgroup";
+	//public static final String CONFIG = "config.ini";
 	
 	
 	
-	public static final String PROCESSSOATEMIZA="https://uat.emizainc.in/emizawms/ProcessSOAtEmiza";
+	
+	
+	public static final String PROCESSSOATEMIZA="https://uat.emizainc.in/emizawms_V7/ProcessSOAtEmiza";
 	public static final String GETINVENTORYAPI="https://uat.emizainc.in/emizawms/GetInventory";
 	public static final String TOKENSM="EmizaToken";
 	public static final String EMIZATOKENSM="47E714F095944F6F40C42A42D8E99DC8";

@@ -6,8 +6,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ProtocolException;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.emiza.Connection.Connection;
+import com.emiza.constant.Constant;
 
 public class Util {
 	
@@ -104,4 +108,28 @@ public class Util {
 					}		
 					return resultdata;
 				}
+	public String dateTimeConversion(String datetime)
+	{
+		
+		// initialize SimpleDateFormat object
+		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String dspatch_date=null;
+		try {
+			// Convert String to Date in java
+			Date today = sdf.parse(datetime);
+
+			// using locale
+			DateFormat sdf1 = new SimpleDateFormat("dd-MMM-yyyy");
+
+			
+			//today = new Date();
+			System.out.println(sdf1.format(today));
+			 dspatch_date=sdf1.format(today);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dspatch_date;
+	}
+	
 }

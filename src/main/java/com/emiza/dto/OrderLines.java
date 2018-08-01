@@ -5,6 +5,13 @@ package com.emiza.dto;
 public class OrderLines {
 	private String SKUID;
 	private String Quantity;
+	private String UnitPrice;
+	public String getUnitPrice() {
+		return UnitPrice;
+	}
+	public void setUnitPrice(String unitPrice) {
+		UnitPrice = unitPrice;
+	}
 	public String getQuantity() {
 		return Quantity;
 	}

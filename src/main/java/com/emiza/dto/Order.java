@@ -2,8 +2,22 @@ package com.emiza.dto;
 
 public class Order {
 	private String Id;
+	private String Remark;
+	private String ShipByDate;
+	public String getShipByDate() {
+		return ShipByDate;
+	}
+	public void setShipByDate(String shipByDate) {
+		ShipByDate = shipByDate;
+	}
 	public String getId() {
 		return Id;
+	}
+	public String getRemark() {
+		return Remark;
+	}
+	public void setRemark(String remark) {
+		Remark = remark;
 	}
 	public void setId(String id) {
 		Id = id;
